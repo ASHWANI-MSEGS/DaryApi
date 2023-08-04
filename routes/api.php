@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->prefix('v1')->group(function(){
     Route::get('user',function(Request $req)
 {
-    return $req->user();
+    return $req->user();  // for dev
 });
 });
 
