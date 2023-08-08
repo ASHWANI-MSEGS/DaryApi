@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AuthorController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,20 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::middleware('auth:api')->prefix('v1')->group(function(){
-    Route::get('user',function(Request $req)
-{
-    return $req->user();  // for dev
-});
-});
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
-
 // testing
 // Route::get("test", function(Request $req)
 // {
@@ -36,4 +22,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // // return 'hhhhhh';
 // }
 // );
+
+Route::middleware('auth:api')->prefix('v1')->group(function(){
+    Route::get('user',function(Request $req)
+{
+    return $req->user();  // for dev
+});
+  Route::get('authors/{author}',[AuthorController::class,'show']);
+
+
+});
+
+
+// // not using this
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// author/{author} this is for one specific author
+
+
 
